@@ -13,15 +13,18 @@ module.exports = function (err, data, pkgPath) {
 
   data.forEach(function (finding) {
 
-    logMsg('##teamcity[testStarted name=\'' + finding.id + '\']');
-    logMsg('##teamcity[testFailed name=\'' + finding.id + '\'' + 'message=\'' + finding.title + '\']');
+    var testName = 'NSP ' + finding.id + ' - ' + finding.module;
+    logMsg('##teamcity[testStarted name=\'' + testName + '\']');
+    logMsg('##teamcity[testFailed name=\'' + testName + '\'' + 'message=\'' + finding.title + '\']');
     logMsg('Module: ' + finding.module);
+    logMsg('Recommendation: ' + finding.recommendation);
+    logMsg('Overview: ' + finding.overview);
     logMsg('Installed: ' + finding.version);
     logMsg('Vulnerable: ' + (finding.vulnerable_versions === '<=99.999.99999' ? 'All' : finding.vulnerable_versions));
     logMsg('Patched: ' + (finding.patched_versions === '<0.0.0' ? 'None' : finding.patched_versions));
     logMsg('Path: ' + finding.path.join(' > '));
     logMsg('More Info: ' + finding.advisory);
-    logMsg('##teamcity[testFinished name=\'' + finding.id + '\']');
+    logMsg('##teamcity[testFinished name=\'' + testName + '\']');
   });
   
   function logMsg(msg){
