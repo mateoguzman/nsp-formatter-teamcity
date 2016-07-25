@@ -1,8 +1,12 @@
 (+) 2 vulnerabilities found
-##teamcity[testStarted name='NSP 118 - minimatch']
-##teamcity[testFailed name='NSP 118 - minimatch'message='Regular Expression Denial of Service']
-Module: minimatch
+##teamcity[testStarted name='nsp 118 - minimatch']
+##teamcity[testFailed name='nsp 118 - minimatch'message='Regular Expression Denial of Service' details='Module: minimatch
 Recommendation: Updated to version 3.0.2 or greater
+Installed: 3.0.0
+Vulnerable: <=3.0.1
+Patched: >=3.0.2
+Path: nsp-formatter-checkstyle@1.0.0 > minimatch@3.0.0
+File Name: package.json
 Overview: Minimatch is a minimal matching utility that works by converting glob expressions into JavaScript `RegExp` objects.  The primary function, `minimatch(path, pattern)` is vulnerable to ReDoS in the `pattern` parameter.  This is because of the regular expression on line 521 of minimatch.js: `/((?:\\{2})*)(\\?)\|/g,`.  The problematic portion of the regex is `((?:\\{2})*)` which matches against `//`.
 
 A proof of concept is as follows:
@@ -25,16 +29,17 @@ console.log(“starting minimatch”);
 minimatch(“foo”, exploit);
 console.log(“finishing minimatch”);
 ```
-Installed: 3.0.0
-Vulnerable: <=3.0.1
-Patched: >=3.0.2
-Path: nsp-formatter-checkstyle@1.0.0 > minimatch@3.0.0
 More Info: https://nodesecurity.io/advisories/118
-##teamcity[testFinished name='NSP 118 - minimatch']
-##teamcity[testStarted name='NSP 117 - shell-quote']
-##teamcity[testFailed name='NSP 117 - shell-quote'message='Potential Command Injection']
-Module: shell-quote
+']
+##teamcity[testFinished name='nsp 118 - minimatch']
+##teamcity[testStarted name='nsp 117 - shell-quote']
+##teamcity[testFailed name='nsp 117 - shell-quote'message='Potential Command Injection' details='Module: shell-quote
 Recommendation: Upgrade to at least version 1.6.1
+Installed: 1.6.0
+Vulnerable: <=1.6.0
+Patched: >=1.6.1
+Path: nsp-formatter-checkstyle@1.0.0 > shell-quote@1.6.0
+File Name: package.json
 Overview: The npm module "shell-quote" cannot correctly escape ">" and "<" operator used for redirection in shell. I'm wondering if this might be possible vulnerability for many application which depends on shell-quote.
 
 For example:
@@ -61,9 +66,6 @@ exec('cat file | ' + command, function ( err, stdout, stderr) {
 will be vulnerable when user input something like pattern = ':</etc/passwd', which causes the content of /etc/passwd to be leaked.
 
 Internally, (Jon Lamendola, Nick Starke, Jacob Waddell) found that the `;`, `{`, and `}` characters weren't escaped properly either. This allows for full command injection. A malicious user could input `'a;{echo,test,123,234}'` to execute echo fully.
-Installed: 1.6.0
-Vulnerable: <=1.6.0
-Patched: >=1.6.1
-Path: nsp-formatter-checkstyle@1.0.0 > shell-quote@1.6.0
 More Info: https://nodesecurity.io/advisories/117
-##teamcity[testFinished name='NSP 117 - shell-quote']
+']
+##teamcity[testFinished name='nsp 117 - shell-quote']
