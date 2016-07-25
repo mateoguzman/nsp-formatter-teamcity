@@ -1,0 +1,40 @@
+{
+  "name": "nsp-formatter-teamcity",
+  "version": "1.0.0",
+  "description": "Teamcity-compatible formatter for the Node Security Project",
+  "main": "src/formatter.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run mocha && npm run nsp",
+    "lint": "eslint .",
+    "mocha": "mocha test/**/*.spec.js",
+    "nsp": "nsp check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateoguzman/nsp-formatter-teamcity.git"
+  },
+  "keywords": [
+    "nsp",
+    "formatter",
+    "teamcity"
+  ],
+  "author": {
+    "name": "Mateo Guzman",
+    "email": "mateoguzman@gmail.com"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mateoguzman/nsp-formatter-teamcity/issues"
+  },
+  "homepage": "https://github.com/mateoguzman/nsp-formatter-teamcity#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "eslint": "2.13.1",
+    "eslint-config-four66": "1.0.0",
+    "mocha": "2.5.3",
+    "nsp": "2.5.0"
+  }
+}
