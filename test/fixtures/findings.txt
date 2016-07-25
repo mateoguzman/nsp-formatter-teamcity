@@ -1,3 +1,4 @@
+(+) 2 vulnerabilities found
 ##teamcity[testStarted name='NSP 118 - minimatch']
 ##teamcity[testFailed name='NSP 118 - minimatch'message='Regular Expression Denial of Service']
 Module: minimatch
