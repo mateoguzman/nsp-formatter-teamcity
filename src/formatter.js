@@ -2,6 +2,21 @@
 
 var Chalk = require('chalk');
 
+/* 
+ * The teamcity documentation says an individual message cannot contain newlines or other special characters.
+ * Instead these should be replaced with |
+ * http://confluence.jetbrains.com/display/TCD7/Build+Script+Interaction+with+TeamCity
+ */
+function escape(str) {
+  return str
+    .replace(/\|/g, '||')
+    .replace(/\n/g, '|n')
+    .replace(/\r/g, '|r')
+    .replace(/\[/g, '|[')
+    .replace(/\]/g, '|]')
+    .replace(/'/g, '|\'');
+}
+
 module.exports = function (err, data, pkgPath) {
 
   var returnString = '',
@@ -31,7 +46,7 @@ module.exports = function (err, data, pkgPath) {
     details += 'Overview: ' + finding.overview + '\n';
     details += 'More Info: ' + finding.advisory + '\n';
     logMsg('##teamcity[testStarted name=\'' + testName + '\']');
-    logMsg('##teamcity[testFailed name=\'' + testName + '\'' + 'message=\'' + finding.title + '\' details=\'' + details  + '\']');
+    logMsg('##teamcity[testFailed name=\'' + testName + '\'' + 'message=\'' + finding.title + '\' details=\'' + escape(details) + '\']');
     logMsg('##teamcity[testFinished name=\'' + testName + '\']');
   });
   

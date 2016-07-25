@@ -12,6 +12,8 @@ describe('formatter', function () {
         var file = path.join(__dirname, 'fixtures', 'findings.txt');
         var expected = fs.readFileSync(file).toString();
         var actual = formatter(null, findings, 'package.json');
+        // Uncomment to update the output of the test to compare with
+        //fs.writeFileSync(path.join(__dirname, 'fixtures', 'findings.txt', actual, {encoding: 'utf-8'});
         expect(actual).to.equal(expected);
     });
 
