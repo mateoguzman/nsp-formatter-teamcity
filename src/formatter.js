@@ -1,15 +1,20 @@
 'use strict';
 
+var Chalk = require('chalk');
+
 module.exports = function (err, data, pkgPath) {
+
+  var returnString = '';
 
   if (err) {
     return 'Debug output: ' + JSON.stringify(Buffer.isBuffer(data) ? data.toString() : data) + '\n' + err;
   }
 
-  //return JSON.stringify(data, null, 2);
+  if (data.length === 0) {
+    return Chalk.green('(+)') + ' No known vulnerabilities found';
+  }
 
-
-  var returnString = '';
+  returnString += Chalk.red('(+) ') + data.length + ' vulnerabilities found\n';
 
   data.forEach(function (finding) {
 
