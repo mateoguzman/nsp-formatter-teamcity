@@ -1,2 +1,6 @@
+
 # nsp-formatter-teamcity
-Teamcitye-compatible formatter for the Node Security Project (nsp)
+
+> Teamcity-compatible formatter for the Node Security Project (nsp)
+
+See the [nsp](https://github.com/nodesecurity/nsp) website for more information.
